@@ -28,6 +28,8 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
+
+
 """ app = Flask(__name__);
 CORS(app)
 @app.route("/bot", methods=["POST"])
@@ -64,7 +66,8 @@ def response():
      
 if __name__=="__main__":
     app.run(host="0.0.0.0",) """
-
+    
+    
 app = Flask(__name__);
 CORS(app)
 @app.route("/bot", methods=["POST"])
@@ -95,7 +98,9 @@ def response():
        
      
 if __name__=="__main__":
-    app.run(host="0.0.0.0",)
+    app.run(host="0.0.0.0",) 
+    
+
 
 
 
@@ -124,4 +129,4 @@ while True:
             if tag == intent["tag"]:
                 print(f"{bot_name}: {random.choice(intent['responses'])}")
     else:
-        print(f"{bot_name}: I do not understand...") """
+        print(f"{bot_name}: I do not understand...")  """
