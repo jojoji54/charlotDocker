@@ -1,0 +1,1 @@
+{"intents": [{"tag": "firebase data0", "patterns": ["my water bottle broke las year"], "responses": ["my water bottle broke las year"]}, {"tag": "firebase data1", "patterns": ["My dog die around 1990"], "responses": ["My dog die around 1990"]}]}
