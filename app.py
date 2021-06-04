@@ -7,6 +7,7 @@ from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 import time
 import os
+import app2
 
 app = Flask(__name__, static_url_path='');
 
@@ -66,8 +67,10 @@ def response():
                 return jsonify({"response" : random.choice(intent['responses'])})
             
         else:
-            os.system('python app2.py')
-            return jsonify({"response" : "???"})
+            # app2.response
+            # os.system('python app2.py')
+            # return jsonify({"response" : "???"})
+            return app2.response
         
 
         
