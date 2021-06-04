@@ -66,6 +66,6 @@ def response():
                 return jsonify({"response" : random.choice(intent['responses'])})
             
     else:
-        return jsonify({"response" : "..."})
+        return jsonify({"response" : "mmmmm"})
         
     
