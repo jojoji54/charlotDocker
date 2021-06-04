@@ -9,8 +9,8 @@ import time
 import os
 
 app = Flask(__name__, static_url_path='');
-#os.system('python database.py')
-#os.system('python trainMessages.py')
+os.system('python database.py')
+os.system('python trainMessages.py')
 
 
 
@@ -64,5 +64,8 @@ def response():
         for intent in intents['intents']:
             if tag == intent["tag"]:
                 return jsonify({"response" : random.choice(intent['responses'])})
+            
+    else:
+        return jsonify({"response" : "..."})
         
     
