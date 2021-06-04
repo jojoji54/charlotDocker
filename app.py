@@ -68,9 +68,9 @@ def response():
             
         else:
             # app2.response
-            # os.system('python app2.py')
-            # return jsonify({"response" : "???"})
-            return app2.response
+             os.system('python app2.py')
+             return jsonify({"response" : "???"})
+            
         
 
         
