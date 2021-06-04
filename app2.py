@@ -9,6 +9,8 @@ import time
 import os
 
 app = Flask(__name__, static_url_path='');
+os.system('python database.py')
+os.system('python trainMessages.py')
 
 
 
@@ -22,10 +24,10 @@ def response():
     app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     app.logger.info(device)
-    with open('intents.json', 'r') as json_data:
+    with open('UserMessages.json', 'r') as json_data:
         intents = json.load(json_data)
     app.logger.info(intents)
-    FILE = "data.pth"
+    FILE = "data2.pth"
     data = torch.load(FILE)
     app.logger.info(data)
     input_size = data["input_size"]
@@ -39,7 +41,6 @@ def response():
     model.load_state_dict(model_state)
     model.eval()
     # return '<h2>sdfjk</h2>'
-
     query = dict(request.form)['query']
     
 
@@ -57,7 +58,6 @@ def response():
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     
-
     if prob.item() > 0.75:
         app.logger.info('%d logged in successfully', prob.item())
         app.logger.info(intents['intents'])
@@ -65,11 +65,9 @@ def response():
             if tag == intent["tag"]:
                 return jsonify({"response" : random.choice(intent['responses'])})
             
-        else:
-            os.system('python app2.py')
-            return jsonify({"response" : "???"})
-        
-
+    else:
+        os.system('python app.py')
+        return jsonify({"response" : "..."})
         
         
     

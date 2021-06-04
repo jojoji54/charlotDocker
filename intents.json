@@ -38,7 +38,7 @@
     {
       "tag": "Charlot states",
       "patterns": ["How are you? ", "How are you doing?", "How’s it going?", "How are things?", "What’s up?"],
-      "responses": ["I’m well. How are you?", "It’s going well, thank you. How are you doing?", "Fine, thanks. And yourself?"]
+      "responses": ["I’m well. How are you?", "It’s going well, thank you. How are you doing?", "Fine, thanks, and you??"]
     },
 
     {
