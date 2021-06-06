@@ -7,10 +7,10 @@ from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 import time
 import os
-import app2
 
 app = Flask(__name__, static_url_path='');
-
+# os.system('python database.py')
+# os.system('python train.py')
 
 
 CORS(app)
@@ -18,7 +18,7 @@ CORS(app)
 def home():
     return '<h1>Demo</h1>'
 CORS(app)
-@app.route("/bot", methods=["POST"])
+@app.route("/bott", methods=["POST"])
 def response():
     app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -40,7 +40,6 @@ def response():
     model.load_state_dict(model_state)
     model.eval()
     # return '<h2>sdfjk</h2>'
-
     query = dict(request.form)['query']
     
 
@@ -58,21 +57,17 @@ def response():
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     
-
     if prob.item() > 0.75:
         app.logger.info('%d logged in successfully', prob.item())
         app.logger.info(intents['intents'])
         for intent in intents['intents']:
             if tag == intent["tag"]:
-                return jsonify({"response" : random.choice(intent['responses'])})
-            
-        else:
-            # app2.response
-             os.system('python app2.py')
-             return jsonify({"response" : "???"})
-            
-        
-
-        
-        
-    
+                if intent["tag"] == "goodbye": 
+                 os.system('python database.py')
+                 os.system('python train.py')
+                 return jsonify({"response" : "Bye :)"})  
+                else:
+                 return jsonify({"response" : random.choice(intent['responses'])})  
+                   
+    else:
+        return jsonify({"response" : "..."})
