@@ -40,7 +40,7 @@ def response():
     model.load_state_dict(model_state)
     model.eval()
     # return '<h2>sdfjk</h2>'
-    query = dict(request.form)['query']
+    query = dict(request.form)['Globalquery']
     
 
     res = query 
@@ -65,9 +65,9 @@ def response():
                 if intent["tag"] == "goodbye": 
                  os.system('python database.py')
                  os.system('python train.py')
-                 return jsonify({"response" : "Bye :)"})  
+                 return jsonify({"Globalresponse" : "Bye :)"})  
                 else:
-                 return jsonify({"response" : random.choice(intent['responses'])})  
+                 return jsonify({"Globalresponse" : random.choice(intent['responses'])})  
                    
     else:
-        return jsonify({"response" : "..."})
+        return jsonify({"Globalresponse" : "..."})
