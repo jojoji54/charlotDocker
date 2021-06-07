@@ -18,7 +18,7 @@ CORS(app)
 def home():
     return '<h1>Demo</h1>'
 CORS(app)
-@app.route("/globalBot", methods=["POST"])
+@app.route("/bot", methods=["POST"])
 def response():
     app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -40,7 +40,7 @@ def response():
     model.load_state_dict(model_state)
     model.eval()
     # return '<h2>sdfjk</h2>'
-    query = dict(request.form)['Globalquery']
+    query = dict(request.form)['query']
     
 
     res = query 
@@ -65,9 +65,9 @@ def response():
                 if intent["tag"] == "goodbye": 
                  os.system('python database.py')
                  os.system('python train.py')
-                 return jsonify({"Globalresponse" : "Bye :)"})  
+                 return jsonify({"response" : "Bye :)"})  
                 else:
-                 return jsonify({"Globalresponse" : random.choice(intent['responses'])})  
+                 return jsonify({"response" : random.choice(intent['responses'])})  
                    
     else:
-        return jsonify({"Globalresponse" : "..."})
+        return jsonify({"response" : "..."})
