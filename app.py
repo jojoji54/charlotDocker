@@ -52,7 +52,7 @@ def response():
     model.load_state_dict(model_state)
     model.eval() #Evaluo los datos del modelo
     # return '<h2>sdfjk</h2>'
-    query = dict(request.form)['query'] #Recogo los datos de Flutter que vienen con la etiqueta query
+    query = dict(request.form)['Globalquery'] #Recogo los datos de Flutter que vienen con la etiqueta query
 
     res = query
     res = tokenize(res) #tokenizo los datos de flutter
