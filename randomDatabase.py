@@ -13,12 +13,12 @@ db = firestore.client()
 # Getting a Document with a known ID
 
 #Para hacer mas inteligente nuestra IA tenemos que guardar dos tipos de parametros , los que van a ser usador para pregunta y los que no van a ser u
-#usados para nada , sin embargo servira para agrandar la base de datos de la IA, este archivo recupera los datos que  serviran
+#usados para nada , sin embargo servira para agrandar la base de datos de la IA, este archivo recupera los datos que no serviran
 #para preguntas
 
-intents = {"intents": []} #etiqueta del archivo json
-detect_duplicate_by_tag = [] #variable que se usara para no duplicar entras
 
+intents = {"intents": []}#etiqueta del archivo json
+detect_duplicate_by_tag = [] #variable que se usara para no duplicar entras
 
 #Esto de abajo es una condicion la cual me permitira , no guardar archivos duplicados
 with open('intents.json') as json_file:
@@ -31,16 +31,16 @@ with open('intents.json') as json_file:
 #Esto de qui abajo, me permita recuperar los datos de la base de datos que tienen la etiqueta de la condicion
 print("old data:", len(intents['intents']))
 results = db.collection('users').document(
-    'Peo5kqpi4GORXehD3oQVRXpHGfD2').collection('chats').get()
+    'Peo5kqpi4GORXehD3oQVRXpHGfD2').collection('chatsRandom').get()
 for index, result in enumerate(results):
     data = result.to_dict()
-    if not (f"firebaseData{index}" in detect_duplicate_by_tag):
+    if not (f"firebaseRandomdata{index}" in detect_duplicate_by_tag):
         intents["intents"].append({
-            "tag": f"firebaseData{index}",
-            "patterns":   [data["messageQuestion2"], data["messageQuestion3"], data["messageQuestion4"], data["messageQuestion5"], data["messageQuestion6"], data["messageQuestion7"], data["messageQuestion15"]],
-            "responses": [data["IAmessageQuestion8"], data["IAmessageQuestion9"], data["IAmessageQuestion10"], data["IAmessageQuestion11"], data["IAmessageQuestion12"], data["IAmessageQuestion13"], data["IAmessageQuestion14"]]
+            "tag": f"firebaseRandomdata{index}",
+            "patterns":   [data["message"]],
+            "responses":  [data["IAmessageAnswer1"],data["IAmessageAnswer2"],data["IAmessageAnswer3"],data["IAmessageAnswer4"],data["IAmessageAnswer5"],data["IAmessageAnswer6"]],
         })
-        detect_duplicate_by_tag.append(f"firebaseData{index}")
+        detect_duplicate_by_tag.append(f"firebaseRandomdata{index}")
 
 #Una vez obtenidos los datos, y cmprobados los datos a no duplicar, lo guardamos en el archivo json
 print("new data: ", len(intents['intents']))
