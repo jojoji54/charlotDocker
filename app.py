@@ -27,7 +27,7 @@ def home():
 CORS(app)
 
 #POST me eprmitira enviar los datos a Flutter
-@app.route("/bot", methods=["POST"])
+@app.route("/globalBot", methods=["POST"])
 def response():
     app.logger.info('start')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
